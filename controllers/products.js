@@ -10,7 +10,7 @@ exports.getProducts = async (req, res) => {
       success: true,
       data: products
     })
-  } catch(err) {
+  } catch (err) {
     return res.status(500).json({
       success: false,
       error: 'Server error'
@@ -28,7 +28,7 @@ exports.addProduct = async (req, res) => {
       success: true,
       data: product
     })
-  } catch(err) {
+  } catch (err) {
     return res.status(500).json({
       success: false,
       error: 'Server error'
@@ -54,7 +54,7 @@ exports.deleteProduct = async (req, res) => {
         error: 'No product found'
       })
     }
-  } catch(err) {
+  } catch (err) {
     return res.status(500).json({
       success: false,
       error: 'Server error'
@@ -66,5 +66,27 @@ exports.deleteProduct = async (req, res) => {
 // @route   GET /api/v1/products/:id
 // @access  public
 exports.updateProduct = async (req, res) => {
-  res.send('<h1>PUT products</h1>')
+  try {
+    const product = await Product.findById(req.params.id)
+    if (product) {
+      product.name = req.body.name
+      product.packaging_material = req.body.packaging_material
+      product.packaging_method = req.body.packaging_method
+      await product.save()
+      return res.status(200).json({
+        success: true,
+        data: {}
+      })
+    } else {
+      return res.status(404).json({
+        success: false,
+        error: 'No product found'
+      })
+    }
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      error: 'Server error'
+    })
+  }
 }
