@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://yl:qwerty123@clusterdb-eumii.mongodb.net/test?retryWrites=true&w=majority', {
+    await mongoose.connect(process.env.MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true
     })
     console.log('MongoDb is now connected...')
-  } catch(err) {
+  } catch (err) {
     console.log('Error: ' + err.message)
     process.exit(1)
   }
