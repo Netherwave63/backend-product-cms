@@ -9,7 +9,7 @@ const app = express()
 connectDB()
 
 app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://products-cms.netlify.com/products')
+  res.header('Access-Control-Allow-Origin', 'https://products-cms.netlify.com')
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
   next()
 })
