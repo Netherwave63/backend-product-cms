@@ -23,6 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use('/api/v1/products', require('./routes/products'))
 
+app.use('/api/v1/customers', require('./routes/customers'))
+
 const PORT = process.env.PORT || 5000
 
 app.listen(PORT, () => {

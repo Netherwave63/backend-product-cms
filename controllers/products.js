@@ -72,10 +72,10 @@ exports.updateProduct = async (req, res) => {
       product.name = req.body.name
       product.packaging_material = req.body.packaging_material
       product.packaging_method = req.body.packaging_method
-      await product.save()
+      const updatedProduct = await product.save()
       return res.status(200).json({
         success: true,
-        data: {}
+        data: updatedProduct
       })
     } else {
       return res.status(404).json({
