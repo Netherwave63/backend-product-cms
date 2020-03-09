@@ -93,15 +93,29 @@ exports.updateCustomer = async (req, res) => {
 }
 
 // @desc    Add new product to an existing customer/ Update an existing product
-// @route   PUT /api/v1/customers/:id
+// @route   PUT /api/v1/customers/products/:id
 // @access  public
 exports.updateProductEntry = async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id)
+    const {
+      _id = null,
+      name,
+      weight_per_package,
+      package_per_carton
+    } = req.body
     if (customer) {
       // product exists
-      if (req.body._id) {
-
+      if (_id) {
+        const targetProduct = customer.products.find(product => product._id == _id)
+        targetProduct.name = name
+        targetProduct.weight_per_package = weight_per_package
+        targetProduct.package_per_carton = package_per_carton
+        await customer.save()
+        return res.status(200).json({
+          success: true,
+          data: targetProduct
+        })
       } else { // new product
         const newProduct = new CustomerProduct(req.body)
         customer.products.push(newProduct)
@@ -136,7 +150,7 @@ exports.deleteProductEntry = async (req, res) => {
     ] = req.params.id.split('_')
     const customer = await Customer.findById(customerId)
     if (customer) {
-      customer.products = customer.products.filter(product => product._id !== productId)
+      customer.products = customer.products.filter(product => product._id != productId)
       await customer.save()
       return res.status(200).json({
         success: true,
