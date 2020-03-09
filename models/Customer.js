@@ -27,4 +27,5 @@ const CustomerSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Customer', CustomerSchema)
+exports.Customer = mongoose.model('Customer', CustomerSchema)
+exports.CustomerProduct = mongoose.model('CustomerProduct', CustomerProductSchema)
