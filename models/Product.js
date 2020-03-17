@@ -13,6 +13,10 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  weight_per_batch: {
+    type: Number,
+    required: true
+  },
   created_at: {
     type: Date,
     default: Date.now()
