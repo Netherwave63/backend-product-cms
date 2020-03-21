@@ -70,7 +70,7 @@ exports.updateProduct = async (req, res) => {
     const product = await Product.findById(req.params.id)
     if (product) {
       if (req.body.index) {
-        product.index = req.body.index === 'add' ? product.index++ : product.index--
+        product.index = req.body.index === 'add' ? ++product.index : --product.index
       } else {
         product.name = req.body.name
         product.packaging_material = req.body.packaging_material
