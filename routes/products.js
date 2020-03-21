@@ -13,7 +13,7 @@ router
   .post(addProduct)
 
 router
-  .route('/:id')
+  .route('/:productId')
   .delete(deleteProduct)
   .put(updateProduct)
 

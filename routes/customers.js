@@ -5,8 +5,9 @@ const {
   addCustomer,
   deleteCustomer,
   updateCustomer,
-  updateProductEntry,
-  deleteProductEntry
+  addProduct,
+  updateProduct,
+  deleteProduct
 } = require('../controllers/customers')
 
 router
@@ -15,13 +16,14 @@ router
   .post(addCustomer)
 
 router
-  .route('/:id')
+  .route('/:customerId')
   .delete(deleteCustomer)
   .put(updateCustomer)
-
+  
 router
-  .route('/products/:id')
-  .put(updateProductEntry)
-  .delete(deleteProductEntry)
+  .route('/products/:customerId')
+  .post(addProduct)
+  .put(updateProduct)
+  .delete(deleteProduct)
 
 module.exports = router
