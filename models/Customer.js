@@ -5,6 +5,10 @@ const CustomerProductSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  productId: {
+    type: String,
+    required: true
+  },
   weight_per_package: {
     type: Number,
     required: true
