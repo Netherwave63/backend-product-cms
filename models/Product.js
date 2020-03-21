@@ -5,6 +5,10 @@ const ProductSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  index: {
+    type: Number,
+    default: 0
+  },
   packaging_material: {
     type: String,
     required: true

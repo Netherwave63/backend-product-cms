@@ -69,10 +69,14 @@ exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.id)
     if (product) {
-      product.name = req.body.name
-      product.packaging_material = req.body.packaging_material
-      product.packaging_method = req.body.packaging_method
-      product.weight_per_batch = req.body.weight_per_batch
+      if (req.body.index) {
+        product.index = req.body.index === 'add' ? product.index++ : product.index--
+      } else {
+        product.name = req.body.name
+        product.packaging_material = req.body.packaging_material
+        product.packaging_method = req.body.packaging_method
+        product.weight_per_batch = req.body.weight_per_batch
+      }
       const updatedProduct = await product.save()
       return res.status(200).json({
         success: true,
