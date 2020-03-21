@@ -101,6 +101,7 @@ exports.updateProductEntry = async (req, res) => {
     const {
       _id = null,
       name,
+      productId,
       weight_per_package,
       package_per_carton
     } = req.body
@@ -109,6 +110,7 @@ exports.updateProductEntry = async (req, res) => {
       if (_id) {
         const targetProduct = customer.products.find(product => product._id == _id)
         targetProduct.name = name
+        targetProduct.productId = productId
         targetProduct.weight_per_package = weight_per_package
         targetProduct.package_per_carton = package_per_carton
         await customer.save()
