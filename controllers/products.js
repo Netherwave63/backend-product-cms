@@ -69,7 +69,9 @@ exports.updateProduct = async (req, res) => {
   try {
     const product = await Product.findById(req.params.productId)
     if (product) {
-      if (req.body.index) product.index = req.body.index 
+      if (req.body.index) {
+        product.index = req.body.index
+      } 
       product.name = req.body.name
       product.packaging_material = req.body.packaging_material
       product.packaging_method = req.body.packaging_method

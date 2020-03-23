@@ -104,7 +104,7 @@ exports.addProduct = async (req, res) => {
       await customer.save()
       return res.status(200).json({
         success: true,
-        data: customer
+        data: newProduct
       })
     } else {
       return res.status(404).json({
@@ -135,7 +135,7 @@ exports.updateProduct = async (req, res) => {
       await customer.save()
       return res.status(200).json({
         success: true,
-        data: customer
+        data: targetProduct
       })
     } else {
       return res.status(404).json({
@@ -152,13 +152,13 @@ exports.updateProduct = async (req, res) => {
 }
 
 // @desc    Delete an existing product
-// @route   DELETE /api/v1/customers/products/:customerId
+// @route   DELETE /api/v1/customers/:customerId/products/:productId
 // @access  public
 exports.deleteProduct = async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.customerId)
     if (customer) {
-      customer.products = customer.products.filter(product => product._id != req.body._id)
+      customer.products = customer.products.filter(product => product._id != req.params.productId)
       await customer.save()
       return res.status(200).json({
         success: true,

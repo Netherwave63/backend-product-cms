@@ -7,7 +7,7 @@ const ProductSchema = new mongoose.Schema({
   },
   index: {
     type: Number,
-    default: 0
+    default: 1
   },
   packaging_material: {
     type: String,

@@ -24,6 +24,9 @@ router
   .route('/products/:customerId')
   .post(addProduct)
   .put(updateProduct)
+
+router
+  .route('/:customerId/products/:productId')
   .delete(deleteProduct)
 
 module.exports = router
